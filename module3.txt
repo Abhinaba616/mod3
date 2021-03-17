@@ -1,0 +1,44 @@
+
+// to insert new data into a collection using insert()
+db.Employees.insert({id:0001,name:"Abhi",email:"abhinaba.dass@gmail.com"});
+
+// to display all data by field using find()
+db.Employees.find().pretty();
+
+// to display a data by conditions using find() 
+db.Employees.find({name:"Abhi"});
+
+// to add a field in an existing object using update()
+db.Employees.update({name:"abhi"},{$set:{age:45}});
+
+// to remove a field from an existing object using update()
+db.Employees.update({name:"abhi"},{$unset:{age:45}});
+
+// to rename a field in an existing object using update()
+db.Employees.update({name:"abhi"},{$rename:"name":"first_name"});
+
+// to insert new data into a collection using update() & {upsert: true}
+db.Employees.update({name:"mary"},{name:"mary",lastname:"lawson"},{upsert:true});
+
+// to remove or delete an object from a collection using remove()
+db.Employees.remove({name:"mary"});
+
+// search query to find more than one object
+db.Employees.find({$or:[{name:"abhi"},{name:"mary"}]}).pretty();
+
+// search query to find using greater than and less than conditions
+db.Employees.find({age:{$gt:22}}).pretty();
+db.Employees.find({age:{$lt:22}}).pretty();
+
+// using sort() function
+db.Employees.find({name:1}); // for ascending order
+db.Employees.find({name:-1}); // for descending order
+
+// to count number of objects with and without conditions
+db.Employees.find().count();
+db.Employees.find({gender:1}).count();
+
+// display records using limit()
+db.Employees.find().limit(10);
+
+// display records
